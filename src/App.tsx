@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-function App() {
+import Nav from './components/Nav';
+import Home from './components/Home';
+import SignUp from './pages/SignUp';
+import Gallery from './components/Gallery';
+import NotFound from './components/NotFound';
+import CreateGallery from './components/CreateGallery';
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/gallery/:id" element={<Gallery />} />
+        <Route path='/create' element={<CreateGallery />} />
+        <Route element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
